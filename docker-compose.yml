@@ -8,6 +8,15 @@ services:
                 volumes:
                         - ./demo1:/cert-home
                         - /var/run:/var/run
+        discovery1:
+                restart: always
+                build:
+                        context: .
+                        dockerfile: Dockerfile-discoverHub
+                volumes:
+                        - ./demo1:/cert-home
+                        - /var/run:/var/run
+
         ndncert2:
                 restart: always
                 build:
@@ -16,9 +25,17 @@ services:
                 volumes:
                         - ./demo2:/cert-home
                         - /var/run:/var/run
+        discovery2:
+                restart: always
+                build:
+                        context: .
+                        dockerfile: Dockerfile-discoverHub
+                volumes:
+                        - ./demo2:/cert-home
+                        - /var/run:/var/run
 
 # To create a service, run
-#     docker-compose up -d ndncert1
+#     docker-compose up -d ndncert1 discovery1
 # or
-#     docker-compose up -d ndncert2
+#     docker-compose up -d ndncert2 discovery2
 

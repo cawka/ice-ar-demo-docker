@@ -1,0 +1,15 @@
+FROM amemedan/ndn:icearpiv1
+
+WORKDIR /icear/ndncert
+RUN git pull https://github.com/cawka/ndncert-1 && \
+    cd apps/icear-ca && \
+    make && \
+    cp discoveryHub /usr/local/bin
+
+WORKDIR /
+
+RUN mkdir /cert-home
+ENV HOME=/cert-home
+
+CMD ["/usr/local/bin/discoveryHub"]
+
