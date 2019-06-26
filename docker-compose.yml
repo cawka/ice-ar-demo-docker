@@ -1,0 +1,24 @@
+version: '3'
+services:
+        ndncert1:
+                restart: always
+                build:
+                        context: .
+                        dockerfile: Dockerfile-ndncert
+                volumes:
+                        - ./demo1:/cert-home
+                        - /var/run:/var/run
+        ndncert2:
+                restart: always
+                build:
+                        context: .
+                        dockerfile: Dockerfile-ndncert
+                volumes:
+                        - ./demo2:/cert-home
+                        - /var/run:/var/run
+
+# To create a service, run
+#     docker-compose up -d ndncert1
+# or
+#     docker-compose up -d ndncert2
+
