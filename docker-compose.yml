@@ -2,7 +2,7 @@ version: '2'
 services:
         ndncert1:
                 restart: always
-                image: ndncert-base
+                image: cawka/ndncert-base:v1
                 build:
                         context: .
                 volumes:
@@ -22,7 +22,7 @@ services:
                 restart: always
                 depends_on:
                         - ndncert1
-                image: ndncert-base
+                image: cawka/ndncert-base:v1
                 volumes:
                         - ./demo1:/cert-home
                         - /var/run:/var/run
