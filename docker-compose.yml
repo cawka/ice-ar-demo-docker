@@ -1,38 +1,39 @@
-version: '3'
+version: '2'
 services:
         ndncert1:
                 restart: always
+                image: ndncert-base
                 build:
                         context: .
-                        dockerfile: Dockerfile-ndncert
                 volumes:
                         - ./demo1:/cert-home
                         - /var/run:/var/run
+                environment:
+                        - HOME=/cert-home
+                entrypoint:
+                        - /usr/local/bin/ndncert-ca-server
+                        - -f
+                        - /cert-home/ca.conf
+        ndncert2:
+                extends: ndncert1
+                volumes:
+                        - ./demo2:/cert-home
         discovery1:
                 restart: always
-                build:
-                        context: .
-                        dockerfile: Dockerfile-discoverHub
+                depends_on:
+                        - ndncert1
+                image: ndncert-base
                 volumes:
                         - ./demo1:/cert-home
                         - /var/run:/var/run
-
-        ndncert2:
-                restart: always
-                build:
-                        context: .
-                        dockerfile: Dockerfile-ndncert
-                volumes:
-                        - ./demo2:/cert-home
-                        - /var/run:/var/run
+                environment:
+                        - HOME=/cert-home
+                entrypoint:
+                        - /usr/local/bin/icear-ca
         discovery2:
-                restart: always
-                build:
-                        context: .
-                        dockerfile: Dockerfile-discoverHub
+                extends: discovery1
                 volumes:
                         - ./demo2:/cert-home
-                        - /var/run:/var/run
 
 # To create a service, run
 #     docker-compose up -d ndncert1 discovery1
