@@ -10,6 +10,7 @@ services:
                         - /var/run:/var/run
                 environment:
                         - HOME=/cert-home
+                        - NDN_LOG=ndncert.*=ALL
                 entrypoint:
                         - /usr/local/bin/ndncert-ca-server
                         - -f
@@ -20,14 +21,13 @@ services:
                         - ./demo2:/cert-home
         discovery1:
                 restart: always
-                depends_on:
-                        - ndncert1
                 image: cawka/ndncert-base:v1
                 volumes:
                         - ./demo1:/cert-home
                         - /var/run:/var/run
                 environment:
                         - HOME=/cert-home
+                        - NDN_LOG=ndn.Face=ALL
                 entrypoint:
                         - /usr/local/bin/icear-ca
         discovery2:
