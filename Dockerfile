@@ -7,7 +7,7 @@ RUN apt install -y libndn-cxx-dev libcrypto++-dev
 
 RUN mkdir /icear
 WORKDIR /icear
-RUN git clone https://github.com/cawka/ndncert-1 ndncert && cd ndncert && git checkout a93769f0fee6f0136c916c91104a16ea9c811bd0
+RUN git clone https://github.com/danameme/ndncert ndncert && cd ndncert && git checkout a69b5f3a379d3a08f7d4d91098d0162cca2d8394
 
 WORKDIR /icear/ndncert
 RUN ./waf configure && \

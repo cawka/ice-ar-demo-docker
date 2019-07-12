@@ -10,7 +10,7 @@ services:
                         - /var/run:/var/run
                 environment:
                         - HOME=/cert-home
-                        - NDN_LOG=ndncert.*=ALL
+                        - NDN_LOG=ndncert.*=INFO
                 entrypoint:
                         - /usr/local/bin/ndncert-ca-server
                         - -f
