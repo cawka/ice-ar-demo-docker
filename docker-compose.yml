@@ -19,9 +19,17 @@ services:
                 extends: ndncert1
                 volumes:
                         - ./demo2:/cert-home
+        ndncert3:
+                extends: ndncert1
+                volumes:
+                        - ./demo3:/cert-home
+        ndncert4:
+                extends: ndncert1
+                volumes:
+                        - ./demo4:/cert-home
         discovery1:
                 restart: always
-                image: cawka/ndncert-base:v1
+                image: cawka/ndncert-base:v2
                 volumes:
                         - ./demo1:/cert-home
                         - /var/run:/var/run
@@ -34,6 +42,14 @@ services:
                 extends: discovery1
                 volumes:
                         - ./demo2:/cert-home
+        discovery3:
+                extends: discovery1
+                volumes:
+                        - ./demo3:/cert-home
+        discovery4:
+                extends: discovery1
+                volumes:
+                        - ./demo4:/cert-home
 
 # To create a service, run
 #     docker-compose up -d ndncert1 discovery1
