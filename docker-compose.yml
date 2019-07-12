@@ -2,7 +2,7 @@ version: '2'
 services:
         ndncert1:
                 restart: always
-                image: cawka/ndncert-base:v1
+                image: cawka/ndncert-base:v2
                 build:
                         context: .
                 volumes:
